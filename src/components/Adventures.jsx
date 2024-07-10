@@ -21,7 +21,7 @@ function AdventureItem(props) {
       "data-aue-filter": "cf",
       "data-aue-label": props.slug
     };
-
+    if((props.primaryImage)&&!(props.primaryImage._path)&&(props.primaryImage._authorUrl?.startsWith('https://delivery')))props.primaryImage._path=props.primaryImage._authorUrl;
   //Must have title, path, and image
   if(!props || !props._path || !props.title || !props.primaryImage ) {
     return null;
@@ -31,7 +31,7 @@ function AdventureItem(props) {
          <li className="adventure-item" {...editorProps}>
           <div className="adventure-image-card">
           <Link to={`/adventure/${props.slug}${window.location.search}`}>
-            <img className="adventure-item-image" src={`${getPublishHost()}${props.primaryImage._path}`}
+            <img className="adventure-item-image" src={`${getPublishHost(props.primaryImage._path)}${props.primaryImage._path}`}
                   alt={props.title} data-aue-prop="primaryImage" data-aue-type="media" />
           </Link>
           </div>
@@ -64,7 +64,6 @@ function Adventures() {
 
   //If data is null then return a loading state...
   if(!data) return <Loading />;
-
   return (
       <section id="adventures" className="adventures">
         <Title itemID="urn:aemconnection:/content/wknd/us/en/adventures/jcr:content/root/container/container/title" itemType="text" itemProp="jcr:title"/>      

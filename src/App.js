@@ -46,15 +46,16 @@ function App() {
   return (
     <HelmetProvider>
       <div className="App">
-        <Helmet>
-          <meta name="urn:adobe:aue:system:aemconnection" content={`aem:${getAuthorHost()}`}/>
-          <meta name="urn:adobe:aue:config:extensions" content="https://47679-workflowextension.adobeio-static.net"/>
-        </Helmet>
-        <Router>
-          <Header />
-          <hr/>
-          <main>
-            <Routes>
+          <Helmet>
+              <meta name="urn:adobe:aue:system:aemconnection" content={`aem:${getAuthorHost()}`}/>
+              <meta name="urn:adobe:aue:config:extensions"
+                    content="https://47679-workflowextension.adobeio-static.net"/>
+          </Helmet>
+          <Router>
+              <Header/>
+              <hr/>
+              <main>
+              <Routes>
               <Route path="/adventure/:slug" element={<AdventureDetail />} />
               <Route path="/" element={<Home />} />
               <Route path="/articles" element={<Articles />} />

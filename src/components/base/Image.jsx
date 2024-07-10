@@ -25,9 +25,10 @@ const Image = (props) => {
     fetchData(resource).then((data) => setData(data));
   }, [resource, prop, initialData]);
   const path = data?.dataLayer?.[data.id]?.image?.["repo:path"];
-
+  const host=getPublishHost(path);
+  const src=path ? `${host}${path}` : "";
   return (
-    <img {...editorProps} data-aue-model="image" data-aue-label={data.id} src={path ? `${getPublishHost()}${path}` : ""} className={className} alt={data.alt} />
+      <img {...editorProps} data-aue-model="image" data-aue-label={data.id} src={src} className={className} alt={data.alt} />
   );
 };
 

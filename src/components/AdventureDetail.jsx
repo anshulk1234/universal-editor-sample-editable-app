@@ -78,7 +78,7 @@ function AdventureDetailRender({
 							   }) {
 	return (<div>
             <img className="adventure-detail-primaryimage"
-					 src={`${getPublishHost()}${primaryImage._path}`} alt={title} data-aue-prop="primaryImage" data-aue-type="media"/>			
+					 src={`${getPublishHost(primaryImage._path)}${primaryImage._path}`} alt={title} data-aue-prop="primaryImage" data-aue-type="media"/>
 			<div className="adventure-detail-content">
 				
 				<div data-aue-prop="description"
@@ -137,9 +137,11 @@ function NoAdventureFound() {
 function getAdventure(data) {
 
 	if (data && data.adventureList && data.adventureList.items) {
-		return data.adventureList.items.find(item => {
+		const new_data= data.adventureList.items.find(item => {
 			return item._path.startsWith("/content/dam/wknd-shared/en");
 		});
+		if(!(new_data.primaryImage._path)&&(new_data.primaryImage._authorUrl?.startsWith('https://delivery')))new_data.primaryImage._path=new_data.primaryImage._authorUrl;
+		return new_data;
 	}
 	return undefined;
 }

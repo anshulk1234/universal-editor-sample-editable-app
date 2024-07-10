@@ -16,7 +16,10 @@ export const getAuthorHost = () => {
 	}
 }
 
-export const getPublishHost = () => {
+export const getPublishHost = (path) => {
+	if(path&&path.startsWith('https://delivery')){
+		return '';
+	}
 	const url = new URL(window.location.href);
 	const searchParams = new URLSearchParams(url.search);
 	if (searchParams.has("publishHost")) {

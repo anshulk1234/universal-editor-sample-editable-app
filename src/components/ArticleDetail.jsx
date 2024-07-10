@@ -70,7 +70,7 @@ function ArticleDetailRender({
 
 	return (<div>
             <img className="adventure-detail-primaryimage" data-aue-type="media" data-aue-prop="featuredImage"
-					 src={`${getPublishHost()}${featuredImage._path}`} alt={title}/>
+					 src={`${getPublishHost(featuredImage._path)}${featuredImage._path}`} alt={title}/>
 			<div className="adventure-detail-content">			
 				<div data-aue-prop="main" data-aue-type="richtext">{mapJsonRichText(main.json)}</div>
 			</div>
